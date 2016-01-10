@@ -1,0 +1,91 @@
+var proxyDomains = [
+    // android
+    "android.com",
+    "sourceforge.net",
+
+    // facebook
+    "facebook.com",
+    "fbcdn.com",
+    "fbcdn.net",
+
+    // google
+    "gmail.com",
+    "google.com",
+    "google.ie",
+    "google.com.hk",
+    "googleapis.com",
+    "googlecode.com",
+    "googlesource.com",
+    "googlesyndication.com",
+    "googletagmanager.com",
+    "googletagservices.com",
+    "googleusercontent.com",
+    "googlevideo.com",
+    "google-analytics.com",
+    "gstatic.com",
+
+    // youtube 
+    "youtube.com",
+    "youtube-nocookie.com",
+    "ytimg.com",
+    "ggpht.com",
+
+    // twitter
+    "twitter.com",
+    "twitter-login.com",
+    "twimg.com",
+    // tumblr
+    "tumblr.com",
+
+    // chase
+    "chase.com",
+
+    // blogs
+    "wordpress.com",
+    "blogspot.com",
+    "blogger.com",
+    "appspot.com",
+
+    // news
+    "bbc.co.uk",
+    "bbc.com.tw",
+
+    "chinagfw.org",
+
+    // developer.mozilla.org
+    "developer.mozilla.org",
+
+    // Misc
+    "freenac.net",
+
+    // !bankofamerica.com
+    // ! porsche
+    //"porsche.com",
+    // ! cathaypacific
+    //"cathaypacific.com",
+
+];
+
+var allowedDomains = proxyDomains;
+
+var piProxy = "SOCKS 172.16.201.1:1080";
+var defaultProxy = "DIRECT";
+var cnProxy = "DIRECT";
+
+function FindProxyForURL(url, host) {
+    var index;
+
+    if (dnsDomainIs(host, ".cn")) {
+        return cnProxy;
+    }
+
+    for (index = 0; index < allowedDomains.length; index++) {
+	var domain = allowedDomains[index];
+	if ((host == domain) || dnsDomainIs(host, "." + domain))
+	{
+            return piProxy;
+        }
+    }
+
+    return defaultProxy;
+}

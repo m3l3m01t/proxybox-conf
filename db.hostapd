@@ -1,0 +1,19 @@
+;
+; BIND reverse data file for local wlan interface
+;
+$TTL	604800
+@	IN	SOA	ns.proxy-box.tv. root.proxy-box.tv. (
+			      1		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+
+	IN	NS	ns.proxy-box.tv.	
+	IN	A	172.16.201.1
+	IN	MX 10	ns.proxy-box.tv.	
+
+ns	IN	A	172.16.201.1
+www	IN	CNAME	ns
+wpad	IN	CNAME	ns
